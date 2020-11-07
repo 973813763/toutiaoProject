@@ -1,25 +1,23 @@
 <template>
   <div>
-  <!-- 路由出口 -->
-    <router-view/>
-    <h1>头条11</h1>
-    <div>
-      <i class="iconfont icon-dianzan"></i>
-    </div>
-    <van-button type="primary">主要按钮</van-button>
-      <van-button type="info">信息按钮</van-button>
-      <van-button type="default">默认按钮</van-button>
-      <van-button type="warning">警告按钮</van-button>
-      <van-button type="danger">危险按钮</van-button>
+    <!-- keep-alive 是路由缓存的意思 https://cn.vuejs.org/v2/guide/components-dynamic-async.html -->
+    <keep-alive :include="cachePages">
+      <!-- 路由出口 -->
+      <router-view />
+    </keep-alive>
+
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    ...mapState(['cachePages'])
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>
